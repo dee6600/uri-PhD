@@ -7,7 +7,7 @@ from std_msgs.msg import String
 # Callback function to grab the data from the process publisher
 def callback(data):
     # Printing sorted data to console 
-    rospy.loginfo("SORTED STRING : %s", ' '.join(sorted(data.data)))
+    rospy.loginfo("SORTED STRING : %s", data.data)
 
 # Fucntion to subscribe to process topic    
 def listener():

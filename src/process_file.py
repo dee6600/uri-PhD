@@ -6,6 +6,9 @@ from std_msgs.msg import String
 # Global variable for storing Sorted string
 sorted_data = ''
 
+# Flag for enableing and disabling the srting service
+my_flag = True
+
 # Creating a publisher object to pss output
 pub = rospy.Publisher('process', String, queue_size=10)
 
@@ -14,8 +17,12 @@ def callback(data):
     # Define global variable for storing Sorted string
     global sorted_data
 
-    # Sorting the Recived data and storing it in variable "sorted_data" 
-    sorted_data = ' '.join(sorted(data.data))
+    # Checking if the flag is TURE for sorting else passing original string
+    if my_flag:
+        # Sorting the Recived data and storing it in variable "sorted_data" 
+        sorted_data = ' '.join(sorted(data.data))
+    else:
+        sorted_data = data.data
 
     # Publishing the data through pub object
     pub.publish(sorted_data)
